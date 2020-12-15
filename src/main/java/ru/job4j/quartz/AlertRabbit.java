@@ -18,7 +18,8 @@ public class AlertRabbit {
         var path = "src/main/resources/rabbit.properties";
         var result = new HashMap<String, Integer>();
 
-        try (var reader = new BufferedReader(new FileReader(path))){
+        try {
+            var reader = new BufferedReader(new FileReader(path));
             reader.lines().map(i -> i.split("="))
                     .forEach(i -> result.put(i[0], Integer.parseInt(i[1])));
 
@@ -33,6 +34,7 @@ public class AlertRabbit {
                     .withSchedule(times)
                     .build();
             scheduler.scheduleJob(job, trigger);
+            reader.close();
         } catch (SchedulerException | IOException e) {
             e.printStackTrace();
         }
