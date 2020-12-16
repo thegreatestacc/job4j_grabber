@@ -1,28 +1,32 @@
 package ru.job4j.quartz;
 
-import org.quartz.*;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-import static org.quartz.JobBuilder.*;
-import static org.quartz.TriggerBuilder.*;
-import static org.quartz.SimpleScheduleBuilder.*;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
+import static org.quartz.TriggerBuilder.newTrigger;
 
 public class AlertRabbit {
     public static void main(String[] args) {
         var path = "src/main/resources/rabbit.properties";
         var result = new HashMap<String, Integer>();
 
-        try {
-            var reader = new BufferedReader(new FileReader(path));
+        try (var reader = new BufferedReader(new FileReader(path))) {
             reader.lines().map(i -> i.split("="))
                     .forEach(i -> result.put(i[0], Integer.parseInt(i[1])));
-
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
             var scheduler = StdSchedulerFactory.getDefaultScheduler();
             scheduler.start();
             var job = newJob(Rabbit.class).build();
@@ -34,8 +38,7 @@ public class AlertRabbit {
                     .withSchedule(times)
                     .build();
             scheduler.scheduleJob(job, trigger);
-            reader.close();
-        } catch (SchedulerException | IOException e) {
+        } catch (SchedulerException e) {
             e.printStackTrace();
         }
     }
