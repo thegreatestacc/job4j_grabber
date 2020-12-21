@@ -5,22 +5,20 @@ import java.util.Objects;
 
 public class Post {
     private long id;
-    private String theme;
-    private String author;
-    private long answers;
-    private long viewers;
-    private Date date;
+    private String name;
+    private String text;
+    private long link;
+    private Date created;
 
     public Post() {
     }
 
-    public Post(long id, String theme, String author, long answers, long viewers, Date date) {
+    public Post(long id, String name, String text, long link, Date created) {
         this.id = id;
-        this.theme = theme;
-        this.author = author;
-        this.answers = answers;
-        this.viewers = viewers;
-        this.date = date;
+        this.name = name;
+        this.text = text;
+        this.link = link;
+        this.created = created;
     }
 
     public long getId() {
@@ -31,44 +29,36 @@ public class Post {
         this.id = id;
     }
 
-    public String getTheme() {
-        return theme;
+    public String getName() {
+        return name;
     }
 
-    public void setTheme(String theme) {
-        this.theme = theme;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getText() {
+        return text;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setText(String text) {
+        this.text = text;
     }
 
-    public long getAnswers() {
-        return answers;
+    public long getLink() {
+        return link;
     }
 
-    public void setAnswers(long answers) {
-        this.answers = answers;
+    public void setLink(long link) {
+        this.link = link;
     }
 
-    public long getViewers() {
-        return viewers;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setViewers(long viewers) {
-        this.viewers = viewers;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     @Override
@@ -77,27 +67,25 @@ public class Post {
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
         return id == post.id &&
-                answers == post.answers &&
-                viewers == post.viewers &&
-                Objects.equals(theme, post.theme) &&
-                Objects.equals(author, post.author) &&
-                Objects.equals(date, post.date);
+                link == post.link &&
+                Objects.equals(name, post.name) &&
+                Objects.equals(text, post.text) &&
+                Objects.equals(created, post.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, theme, author, answers, viewers, date);
+        return Objects.hash(id, name, text, link, created);
     }
 
     @Override
     public String toString() {
         return "Post{" +
                 "id=" + id +
-                ", theme='" + theme + '\'' +
-                ", author='" + author + '\'' +
-                ", answers=" + answers +
-                ", viewers=" + viewers +
-                ", date=" + date +
+                ", name='" + name + '\'' +
+                ", text='" + text + '\'' +
+                ", link=" + link +
+                ", created=" + created +
                 '}';
     }
 }
