@@ -7,13 +7,13 @@ public class Post {
     private long id;
     private String name;
     private String text;
-    private long link;
+    private String link;
     private Date created;
 
     public Post() {
     }
 
-    public Post(long id, String name, String text, long link, Date created) {
+    public Post(long id, String name, String text, String link, Date created) {
         this.id = id;
         this.name = name;
         this.text = text;
@@ -45,11 +45,11 @@ public class Post {
         this.text = text;
     }
 
-    public long getLink() {
+    public String getLink() {
         return link;
     }
 
-    public void setLink(long link) {
+    public void setLink(String link) {
         this.link = link;
     }
 
