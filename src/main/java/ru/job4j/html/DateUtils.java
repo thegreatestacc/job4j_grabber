@@ -12,7 +12,7 @@ public class DateUtils {
             "августа", "сентября", "октября", "ноября", "декабря"};
 
 
-    public void newMethod(String time) {
+    public void dateConverter(String time) {
         var today = "сегодня";
         var yesterday = "вчера";
 

@@ -21,7 +21,7 @@ public class SqlRuParse {
 //            System.out.println(href.attr("href"));
 //            System.out.println(href.text());
 
-            new DateUtils().newMethod(date.text());
+            new DateUtils().dateConverter(date.text());
         }
     }
 
