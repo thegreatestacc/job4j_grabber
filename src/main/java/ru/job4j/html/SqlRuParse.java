@@ -21,7 +21,8 @@ public class SqlRuParse {
 //            System.out.println(href.attr("href"));
 //            System.out.println(href.text());
 
-            new DateUtils().dateConverter(date.text());
+//            new DateUtils().dateConverter(date.text());
+            System.out.println(downloadDetails());
         }
     }
 
@@ -55,7 +56,7 @@ public class SqlRuParse {
         return result;
     }
 
-    public static void downloadDetails() throws IOException {
+    public static List<String> downloadDetails() throws IOException {
         var result = new ArrayList<String>();
         url = "https://www.sql.ru/forum/1325330/lidy-be-fe-senior-cistemnye-analitiki-qa-i-devops-moskva-do-200t";
         var doc = Jsoup.connect(url).get();
@@ -65,6 +66,6 @@ public class SqlRuParse {
             var href = e.child(0).parent().parent();
             result.add(href.text());
         }
-        System.out.println(result);
+        return result;
     }
 }
