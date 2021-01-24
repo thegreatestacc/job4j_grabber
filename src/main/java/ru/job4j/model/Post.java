@@ -8,12 +8,12 @@ public class Post {
     private String name;
     private String text;
     private String link;
-    private Date created;
+    private String created;
 
     public Post() {
     }
 
-    public Post(long id, String name, String text, String link, Date created) {
+    public Post(long id, String name, String text, String link, String created) {
         this.id = id;
         this.name = name;
         this.text = text;
@@ -53,11 +53,11 @@ public class Post {
         this.link = link;
     }
 
-    public Date getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(Date created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 
