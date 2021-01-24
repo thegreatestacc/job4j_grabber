@@ -30,7 +30,9 @@ public class PsqlStore implements Store, AutoCloseable {
 
     @Override
     public void close() throws Exception {
-
+        if (connection != null) {
+            connection.close();
+        }
     }
 
     @Override
